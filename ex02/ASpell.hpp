@@ -4,7 +4,7 @@
 #include "ATarget.hpp"
 class ATarget;
 class ASpell{
-    protected:
+    private:
     std::string _name;
     std::string _effects;
     public:
@@ -12,18 +12,18 @@ class ASpell{
         _name = name;
         _effects = effects;
     }
-    ASpell(){}
+
+    ~ASpell(){}
 
     std::string getName() const{
         return _name;
     }
 
-    std::string getEffects() const{
+    std::string getEffects() const {
         return _effects;
     }
 
     virtual ASpell * clone() const = 0;
 
     void launch(const ATarget &arg) const;
-
 };

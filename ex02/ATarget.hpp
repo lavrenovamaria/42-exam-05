@@ -10,7 +10,8 @@ class ATarget{
     ATarget(std::string type){
         _type = type;
     }
-    ATarget(){}
+
+    ~ATarget(){}
 
     std::string getType() const{
         return _type;
@@ -19,5 +20,4 @@ class ATarget{
     virtual ATarget * clone() const = 0;
 
     void getHitBySpell(const ASpell &arg) const;
-
 };

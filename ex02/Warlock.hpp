@@ -1,15 +1,15 @@
 #pragma once
 
 #include <iostream>
-#include "ASpell.hpp"
-#include "ATarget.hpp"
 #include <map>
+#include "ASpell.hpp"
+#include "Spellbook.hpp"
 
 class Warlock{
     private:
     std::string _name;
     std::string _title;
-    std::map<std::string, ASpell *> spellbook;
+    Spellbook spellbook;
     public:
     Warlock(std::string name, std::string title){
         _name = name;
@@ -18,6 +18,10 @@ class Warlock{
     }
     ~Warlock(){
         std::cout << _name << ": My job here is done!\n";
+    }
+
+    void introduce() const{
+        std::cout << _name << ": I am " << _name << ", " << _title << "!\n";
     }
 
     std::string getName() const{
@@ -32,21 +36,17 @@ class Warlock{
         _title = title;
     }
 
-    void introduce() const{
-        std::cout << _name << ": I am" << _name << ", " << _title << "!\n";
-    }
-
-    void learnSpell(ASpell *name){
-        spellbook[name->getName()] = name;
+    void learnSpell(ASpell * name){
+        spellbook.learnSpell(name);
     }
 
     void forgetSpell(std::string name){
-        if(spellbook[name] != 0)
-            spellbook.erase(name);
+        if(spellbook.createSpell(name) != 0)
+            spellbook.forgetSpell(name);
     }
 
-    void launchSpell(std::string name, const ATarget &arg){
-        if(spellbook[name] != 0)
-            spellbook[name]->launch(arg);
+    void launchSpell(std::string name, const ATarget & arg){
+        if(spellbook.createSpell(name) != 0)
+            spellbook.createSpell(name)->launch(arg);
     }
 };

@@ -1,28 +1,27 @@
 #pragma once
 
-#include <iostream>
 #include <map>
 #include "ASpell.hpp"
 
-class Spellbook {
+class Spellbook{
     private:
     std::map<std::string, ASpell *> spellbook;
     public:
     Spellbook(){}
     ~Spellbook(){}
 
-    void learnSpell(ASpell* spell){
-        spellbook[spell.getName] = spell;
+    void learnSpell(ASpell*name){
+        spellbook[name->getName()] = name;
     }
 
-    void forgetSpell(string const &name){
+    void forgetSpell(std::string const &name){
         if(spellbook[name] != 0)
             spellbook.erase(name);
     }
 
-    ASpell* createSpell(string const &name){
+    ASpell* createSpell(std::string const &name){
         if(spellbook[name] != 0)
             return spellbook[name];
         return 0;
     }
-}
+};

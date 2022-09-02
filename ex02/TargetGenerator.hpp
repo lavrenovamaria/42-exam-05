@@ -1,19 +1,22 @@
 #pragma once
 
-#include "ATarget.hpp"
 #include <map>
+#include "ATarget.hpp"
 
 class TargetGenerator{
     private:
-        std::map<std::string, ATarget *> spellbook;
+    std::map<std::string, ATarget *> spellbook;
     public:
+    TargetGenerator(){}
+    ~TargetGenerator(){}
 
-    void learnTargetType(ATarget* name){
+    void learnTargetType(ATarget*name){
         spellbook[name->getType()] = name;
     }
 
     void forgetTargetType(std::string const &name){
-        spellbook.erase(name);
+        if(spellbook[name] != 0)
+            spellbook.erase(name);
     }
 
     ATarget* createTarget(std::string const &name){
