@@ -11,7 +11,7 @@ class ATarget{
         _type = type;
     }
 
-    ~ATarget(){}
+    virtual ~ATarget(){}
 
     std::string getType() const{
         return _type;

@@ -10,7 +10,7 @@ class ATarget{
     ATarget(std::string type){
         _type = type;
     }
-    ATarget(){}
+    virtual ~ATarget(){}
 
     std::string getType() const{
         return _type;

@@ -13,7 +13,7 @@ class ASpell{
         _effects = effects;
     }
 
-    ~ASpell(){}
+    virtual ~ASpell(){}
 
     std::string getName() const{
         return _name;
