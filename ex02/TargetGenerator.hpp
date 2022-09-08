@@ -20,7 +20,8 @@ class TargetGenerator{
     }
 
     ATarget* createTarget(std::string const &name){
-        if(spellbook[name] != 0)
+        
+        if(spellbook.find(name) != spellbook.end())
             return spellbook[name];
         return 0;
     }

@@ -46,6 +46,9 @@ class Warlock{
     }
 
     void launchSpell(std::string name, const ATarget & arg){
+        ATarget const *ptr = 0;
+        if(ptr == &arg)
+            return;
         if(spellbook.createSpell(name) != 0)
             spellbook.createSpell(name)->launch(arg);
     }
