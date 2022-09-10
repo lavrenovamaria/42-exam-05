@@ -6,25 +6,57 @@
 #include "TargetGenerator.hpp"
 #include "Fireball.hpp"
 
-int main()
+int main(void)
 {
-  Warlock richard("Richard", "foo");
-  richard.setTitle("Hello, I'm Richard the Warlock!");
-  BrickWall model1;
+	std::cout << "--- Constructors:\n";
+	Warlock richard("Aang", "The Avatar");
 
-  Polymorph* polymorph = new Polymorph();
-  TargetGenerator tarGen;
+	std::cout << "--- Spells:\n";
+	Polymorph *water = new Polymorph();
+	Fireball *fire = new Fireball();
+	Fwoosh *air = new Fwoosh();
+	richard.learnSpell(water);
+	richard.learnSpell(fire);
+	richard.forgetSpell("Fwoosh");
+	richard.learnSpell(air);
+	richard.forgetSpell("Fwoosh");
+	richard.forgetSpell("Fwoosh");
+	richard.learnSpell(air);
 
-  tarGen.learnTargetType(&model1);
-  richard.learnSpell(polymorph);
+	std::cout << "--- Targets:\n";
+	Dummy *hay = new Dummy();
+	BrickWall *earth = new BrickWall();
 
-  Fireball* fireball = new Fireball();
+	TargetGenerator tarGen;
+	tarGen.learnTargetType(hay);
+	tarGen.learnTargetType(earth);
 
-  richard.learnSpell(fireball);
+	std::cout << "--- Spells (all):\n";
 
-  ATarget* wall = tarGen.createTarget("Inconspicuous Red-brick Wall");
+	richard.launchSpell("Fwoosh", *tarGen.createTarget("Dummy Practice"));
+	richard.launchSpell("Fireball", *tarGen.createTarget("BrickWall Practice"));
+	richard.launchSpell("Polymorph", *tarGen.createTarget("Dummy Practice"));
 
-  richard.introduce();
-  richard.launchSpell("Polymorph", *wall);
-  richard.launchSpell("Fireball", *wall);
+	std::cout << "--- Forgotten \"Fwoosh\":\n";
+
+	richard.forgetSpell("Fwoosh");
+	richard.launchSpell("Fwoosh", *tarGen.createTarget("Dummy Practice"));
+	richard.launchSpell("Fireball", *tarGen.createTarget("BrickWall Practice"));
+	richard.launchSpell("Polymorph", *tarGen.createTarget("Dummy Practice"));
+
+	std::cout << "--- Spells (all):\n";
+
+	richard.learnSpell(air);
+	richard.launchSpell("Fwoosh", *tarGen.createTarget("Dummy Practice"));
+	richard.launchSpell("Fireball", *tarGen.createTarget("BrickWall Practice"));
+	richard.launchSpell("Polymorph", *tarGen.createTarget("Dummy Practice"));
+
+	std::cout << "--- Non-existant spell:\n";
+
+	richard.launchSpell("ACID", *tarGen.createTarget("BrickWall Practice"));
+	richard.forgetSpell("ACID");
+	richard.launchSpell("ACID", *tarGen.createTarget("Dummy Practice"));
+
+	std::cout << "--- Destructors:\n";
+	return (0);
 }

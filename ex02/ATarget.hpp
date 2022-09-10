@@ -11,6 +11,9 @@ class ATarget{
         _type = type;
     }
 
+    ATarget(ATarget const &other);
+    ATarget &operator=(ATarget const &other);
+
     virtual ~ATarget(){}
 
     std::string getType() const{

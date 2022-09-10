@@ -11,7 +11,8 @@ class Spellbook{
     ~Spellbook(){}
 
     void learnSpell(ASpell*name){
-        spellbook[name->getName()] = name;
+        if(spellbook[name] != 0)
+            spellbook[name->getName()] = name;
     }
 
     void forgetSpell(std::string const &name){

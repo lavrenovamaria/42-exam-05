@@ -13,6 +13,10 @@ class ASpell{
         _effects = effects;
     }
 
+    ASpell(ASpell const &other);
+    
+    ASpell &operator=(ASpell const &other);
+
     virtual ~ASpell(){}
 
     std::string getName() const{
