@@ -3,13 +3,13 @@
 #include <iostream>
 #include <map>
 #include "ASpell.hpp"
-#include "Spellbook.hpp"
+#include "SpellBook.hpp"
 
 class Warlock{
     private:
     std::string _name;
     std::string _title;
-    Spellbook spellbook;
+    SpellBook spellbook;
     public:
     Warlock(std::string name, std::string title){
         _name = name;

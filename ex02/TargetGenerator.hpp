@@ -8,7 +8,7 @@ class TargetGenerator{
     std::map<std::string, ATarget *> spellbook;
     public:
     TargetGenerator(){}
-    ~TargetGenerator(){}
+    ~TargetGenerator();
 
     void learnTargetType(ATarget*name){
         spellbook[name->getType()] = name;
